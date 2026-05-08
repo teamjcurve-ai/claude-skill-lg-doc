@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>LG Document</title>
+<style>
+  :root {
+    --lg-text: #595959;
+    --lg-bold: #1A1A1A;
+    --lg-bg: #FFFFFF;
+    --lg-accent: #A50034;
+    --lg-rule: #E0E0E0;
+    --lg-soft: #F5F5F5;
+  }
+
+  @page { size: 1280px 720px; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: "LG스마트체2.0", "LG Smart Han 2.0", "LGSmartHan2.0",
+                 "LG SmartHan", "LG스마트체",
+                 -apple-system, BlinkMacSystemFont, "맑은 고딕", "Malgun Gothic",
+                 "Apple SD Gothic Neo", sans-serif;
+    color: var(--lg-text);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    padding: 64px 80px;
+    background: var(--lg-bg);
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ===== 표지 ===== */
+  .slide.cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 100px;
+  }
+  .slide.cover::before {
+    content: "";
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 80px;
+    height: 6px;
+    background: var(--lg-accent);
+  }
+  .cover h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--lg-bold);
+    margin: 0 0 28px;
+    letter-spacing: -1px;
+  }
+  .cover .subtitle {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--lg-text);
+    margin: 0;
+    max-width: 900px;
+  }
+  .cover-foot {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 14px;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+  .cover-foot .meta { font-weight: 500; }
+  .cover-foot .copy { font-weight: 600; color: var(--lg-bold); }
+
+  /* ===== 목차 ===== */
+  .slide.toc { display: flex; flex-direction: column; }
+  .slide-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--lg-bold);
+    margin-bottom: 36px;
+  }
+  .slide-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--lg-bold);
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  .section-num {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--lg-accent);
+    font-weight: 700;
+  }
+  .toc-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+  }
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 32px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--lg-rule);
+    font-size: 22px;
+    color: var(--lg-bold);
+  }
+  .toc-list .num {
+    color: var(--lg-accent);
+    font-weight: 700;
+    font-size: 18px;
+    min-width: 56px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== 본문 ===== */
+  .slide.body { display: flex; flex-direction: column; }
+  .slide-body {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 1120px;
+  }
+  .slide-body h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--lg-bold);
+    margin: 24px 0 12px;
+  }
+  .slide-body h3:first-child { margin-top: 0; }
+  .slide-body p { margin: 0 0 14px; }
+  .slide-body ul, .slide-body ol { margin: 0 0 14px; padding-left: 24px; }
+  .slide-body li { margin-bottom: 6px; }
+  .slide-body strong { color: var(--lg-bold); font-weight: 700; }
+  .slide-body em { color: var(--lg-accent); font-style: normal; font-weight: 600; }
+  .slide-body code {
+    background: var(--lg-soft);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  .slide-body blockquote {
+    margin: 12px 0;
+    padding: 8px 16px;
+    border-left: 3px solid var(--lg-accent);
+    color: var(--lg-bold);
+    background: var(--lg-soft);
+  }
+
+  /* ===== 표 ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+  thead { background: var(--lg-bold); color: #fff; }
+  thead th {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--lg-rule);
+    color: var(--lg-text);
+  }
+  tbody tr:nth-child(even) { background: var(--lg-soft); }
+  table.compact { font-size: 13px; }
+  table.compact thead th { padding: 9px 10px; }
+  table.compact tbody td { padding: 7px 10px; }
+
+  /* ===== 마무리 ===== */
+  .slide.outro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .outro h1 {
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--lg-bold);
+    margin: 0;
+    letter-spacing: -1.5px;
+  }
+  .outro::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: var(--lg-accent);
+    margin-top: 28px;
+  }
+  .outro-foot {
+    position: absolute;
+    bottom: 60px;
+    right: 100px;
+    font-size: 14px;
+    color: #999;
+    font-weight: 600;
+  }
+
+  /* ===== 푸터 (표지·마무리 제외) ===== */
+  .page-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    text-align: center;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 3px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 표지 ============ -->
+<section class="slide cover">
+  <h1>샘플 제목이 여기에 들어갑니다</h1>
+  <p class="subtitle">부제 또는 한 줄 설명</p>
+  <div class="cover-foot">
+    <span class="meta">2026.05.08 · 작성자명</span>
+    <span class="copy">© 2026 LG</span>
+  </div>
+</section>
+
+<!-- ============ 목차 ============ -->
+<section class="slide toc">
+  <header class="slide-head">
+    <h2 class="slide-title">목차</h2>
+    <span class="section-num">CONTENTS</span>
+  </header>
+  <ol class="toc-list">
+    <li><span class="num">01</span><span class="text">섹션 하나</span></li>
+    <li><span class="num">02</span><span class="text">섹션 둘</span></li>
+    <li><span class="num">03</span><span class="text">섹션 셋</span></li>
+  </ol>
+  <footer class="page-footer">CONFIDENTIAL  |  2 / 5</footer>
+</section>
+
+<!-- ============ 본문 ============ -->
+<section class="slide body">
+  <header class="slide-head">
+    <h2 class="slide-title">섹션 제목</h2>
+    <span class="section-num">SECTION 01</span>
+  </header>
+  <div class="slide-body">
+    <h3>서브헤딩</h3>
+    <p>본문은 이렇게 들어갑니다. <strong>강조</strong>는 검정,
+       <em>포인트</em>는 LG Red.</p>
+    <ul>
+      <li>리스트 항목 하나</li>
+      <li>리스트 항목 둘</li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>항목</th><th>설명</th><th>비고</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A</td><td>첫 번째</td><td>-</td></tr>
+        <tr><td>B</td><td>두 번째</td><td>중요</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer class="page-footer">CONFIDENTIAL  |  3 / 5</footer>
+</section>
+
+<!-- ============ 마무리 ============ -->
+<section class="slide outro">
+  <h1>감사합니다</h1>
+  <div class="outro-foot">© 2026 LG</div>
+</section>
+
+</body>
+</html>

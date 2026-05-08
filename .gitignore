@@ -1,0 +1,6 @@
+out/
+*.tmp.html
+.DS_Store
+*.swp
+.idea/
+.vscode/
