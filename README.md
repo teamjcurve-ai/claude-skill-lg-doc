@@ -4,19 +4,41 @@
 
 표지 → 목차 → 본문 → 마무리 슬라이드를 자동으로 구성해 주고, 마크다운 표도 LG 톤으로 스타일링합니다.
 
+---
+
+## 가장 빠른 설치: Claude Code에 그대로 시키기
+
+새 PC의 Claude Code 세션에 아래 한 줄을 그대로 붙여 넣으세요. 클로드가 알아서 다운로드하고 환경 점검까지 해 줍니다.
+
+```
+https://github.com/teamjcurve-ai/claude-skill-lg-doc 이 스킬을 install.sh 스크립트로 설치해 줘.
+```
+
+또는 터미널에서 직접 한 줄로 설치:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/teamjcurve-ai/claude-skill-lg-doc/main/install.sh | bash
+```
+
+설치가 끝나면 Claude Code 세션에서 마크다운/텍스트 첨부 후 **"LG 문서로 만들자"** 라고 입력하면 됩니다.
+
+---
+
 ## 미리 보기
 
-`examples/sample.pdf` 참고. 5페이지 데모.
+`examples/sample.pdf` 참고. 8페이지 데모(표지·목차·본문 5장·마무리, 표 1개).
 
 ## 요구사항
 
 1. **Claude Code** 설치
-2. **Chrome / Chromium / Edge / Brave 중 하나** (PDF 변환 엔진)
+2. **Chrome / Chromium / Edge / Brave 중 하나** (PDF 변환 엔진 — 거의 모든 PC에 이미 있음)
 3. **LG스마트체2.0 폰트** 본인 PC에 시스템 설치 (선택이지만 강력 추천)
    - 미설치 시 시스템 기본 한글 폰트로 폴백되어 LG 톤이 살지 않습니다.
    - 설치 파일은 LG 공식 채널에서 받아 시스템 폰트로 등록.
 
-## 설치
+## 수동 설치
+
+자동 스크립트가 부담스러우면 수동으로:
 
 ```bash
 git clone https://github.com/teamjcurve-ai/claude-skill-lg-doc.git \
